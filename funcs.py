@@ -8,7 +8,9 @@ def clear():
 	system("cls")
 
 def typefile():
+	clear()
 	file_path = input(Fore.GREEN + "Создание файла (пожалуйста, введите имя файла): " + Style.RESET_ALL)
+	file_path = path.abspath("workspace/" + file_path.strip())
 
 	if path.exists(file_path):
 		clear()
@@ -42,7 +44,7 @@ def typefile():
 		file = open(file_path, "a")
 
 	clear()
-	print(Fore.GREEN + "Нажмите ENTER, чтобы начать новую строку.\nНажмите Ctrl + C, чтобы сохранить и закрыть.\n" + Style.RESET_ALL)
+	print(Fore.GREEN + "Нажмите ENTER, чтобы начать новую строку.\nНажмите Ctrl + C, чтобы сохранить и закрыть." + Style.RESET_ALL)
 	time.sleep(3)
 
 	line_count = 1
@@ -58,7 +60,7 @@ def typefile():
 
 		except KeyboardInterrupt:
 			clear()
-			print(Fore.YELLOW + "\n\nЗакрытие..." + Style.RESET_ALL)
+			print(Fore.YELLOW + "Закрытие..." + Style.RESET_ALL)
 			system("color")
 			clear()
 			break
@@ -66,4 +68,15 @@ def typefile():
 	file.close()
 
 def compfile():
-	system("java -cp Compiler.jar com.de4oult.soda.Main")
+	filename = input(Fore.GREEN + "Компиляция файла (пожалуйста, введите имя файла): " + Style.RESET_ALL)
+
+	if filename.strip() == "":
+		clear()
+		system("java -cp Compiler.jar com.de4oult.soda.Main script.sc")
+		print(str(absolute))
+	elif ".sc" not in filename.lower():
+		clear()
+		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip() + ".sc"))
+	else:
+		clear()
+		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip()))

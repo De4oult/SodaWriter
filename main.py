@@ -3,7 +3,8 @@ from funcs import typefile, compfile, clear
 
 init()
 
-print(Fore.GREEN + "\n1. Создать новый файл \n2. Скомпилировать скрипт" + Style.RESET_ALL)
+clear()
+print(Fore.GREEN + "1. Создать новый файл \n2. Скомпилировать скрипт" + Style.RESET_ALL)
 do = input("\nВыберите действие >> ")
 clear()
 

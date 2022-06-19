@@ -72,11 +72,11 @@ def compfile():
 
 	if filename.strip() == "":
 		clear()
-		system("java -cp Compiler.jar com.de4oult.soda.Main script.sc")
+		system("java -cp Compiler.jar com.de4oult.soda.Main script.soda")
 		print(str(absolute))
-	elif ".sc" not in filename.lower():
+	elif ".soda" not in filename.lower():
 		clear()
-		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip() + ".sc"))
+		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip() + ".soda"))
 	else:
 		clear()
 		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip()))

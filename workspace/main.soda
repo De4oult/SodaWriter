@@ -1,0 +1,5 @@
+func print(text, end) {
+	disp text + end
+}
+
+print("Hello World", "\n")

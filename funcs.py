@@ -1,21 +1,37 @@
 from colorama import Fore, Back, Style, init
+from syntaxparser import parseread
 from os import path, system
+from editor import editor
 import time
 
 init()
 
 def clear():
-	system("cls")
+	#system("cls")  # windows
+	system("clear") # linux
+
+def readfile():
+	file_path = input(Fore.GREEN + "Чтение файла (пожалуйста, введите имя файла): " + Style.RESET_ALL)
+	if "workspace/" not in file_path.strip().lower():
+		file_path = path.abspath("workspace/" + file_path.strip())
+	if ".soda" not in file_path.strip().lower():
+		file_path = path.abspath(file_path.strip() + ".soda")
+	clear()
+	
+	if path.exists(file_path):
+		parseread(file_path)
 
 def typefile():
-	clear()
 	file_path = input(Fore.GREEN + "Создание файла (пожалуйста, введите имя файла): " + Style.RESET_ALL)
-	file_path = path.abspath("workspace/" + file_path.strip())
+	if ".soda" not in file_path.strip().lower():
+		file_path = file_path + ".soda"
+	if "workspace/" not in file_path.strip().lower():
+		file_path = path.abspath("workspace/" + file_path.strip())
 
 	if path.exists(file_path):
 		clear()
 		print(Fore.RED + "Файл уже существует!")
-		time.sleep(3)
+		time.sleep(2)
 		
 		clear()
 		ans = input(Fore.YELLOW + "Вы хотите использовать этот файл? (д/н)\n-> ")
@@ -45,38 +61,23 @@ def typefile():
 
 	clear()
 	print(Fore.GREEN + "Нажмите ENTER, чтобы начать новую строку.\nНажмите Ctrl + C, чтобы сохранить и закрыть." + Style.RESET_ALL)
-	time.sleep(3)
+	time.sleep(2)
 
-	line_count = 1
-	system("color 1f")
-	clear()
-
-	while line_count > 0:
-		try:
-			line = input(str(line_count) + " ")
-			file.write(line)
-			file.write('\n')
-			line_count += 1
-
-		except KeyboardInterrupt:
-			clear()
-			print(Fore.YELLOW + "Закрытие..." + Style.RESET_ALL)
-			system("color")
-			clear()
-			break
-
-	file.close()
+	editor(file)
 
 def compfile():
 	filename = input(Fore.GREEN + "Компиляция файла (пожалуйста, введите имя файла): " + Style.RESET_ALL)
 
 	if filename.strip() == "":
 		clear()
-		system("java -cp Compiler.jar com.de4oult.soda.Main script.soda")
-		print(str(absolute))
+		system("sudo java -cp Compiler.jar com.de4oult.soda.Main workspace/script.soda")
 	elif ".soda" not in filename.lower():
 		clear()
-		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip() + ".soda"))
+		if "workspace/" not in filename.strip().lower():
+			filename = path.abspath("workspace/" + filename.strip())
+		system("sudo java -cp Compiler.jar com.de4oult.soda.Main " + str(filename.strip() + ".soda"))
 	else:
 		clear()
-		system("java -cp Compiler.jar com.de4oult.soda.Main " + str("workspace/" + filename.strip()))
+		if "workspace/" not in filename.strip().lower():
+			filename = path.abspath("workspace/" + filename.strip())
+		system("sudo java -cp Compiler.jar com.de4oult.soda.Main " + str(filename.strip()))

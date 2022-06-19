@@ -1,0 +1,6 @@
+displine("I'm a script")
+disp "Enter your name >> "
+name = get()
+disp "\n"
+displine("Good night, " + name)
+//eof

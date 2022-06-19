@@ -1,16 +1,36 @@
+from funcs import typefile, compfile, readfile, clear
 from colorama import Fore, Back, Style, init
-from funcs import typefile, compfile, clear
+import sys
 
 init()
 
-clear()
-print(Fore.GREEN + "1. Создать новый файл \n2. Скомпилировать скрипт" + Style.RESET_ALL)
-do = input("\nВыберите действие >> ")
+#clear()
+#print(Fore.GREEN + "1. Создать новый файл \n2. Читать файл \n3. Скомпилировать файл" + Style.RESET_ALL)
+#do = input("\nВыберите действие >> ")
+#clear()
+
+#if do == "1":
+#	typefile()
+#elif do == "2":
+#	readfile()
+#elif do == "3":
+#	compfile()
+#else:
+#	exit()
+
 clear()
 
-if do == "1":
-	typefile()
-elif do == "2":
-	compfile()
+helpMes = open('help.conf', 'r')
+
+if len(sys.argv) > 1:
+	arg = sys.argv[1].lower()
+
+	if arg == "type":
+		typefile()
+	elif arg == "read":
+		readfile()
+	elif arg == "comp":
+		compfile()
+
 else:
-	exit()
+	print(helpMes.read())

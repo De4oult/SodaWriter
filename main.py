@@ -1,36 +1,37 @@
-from funcs import typefile, compfile, readfile, clear
-from colorama import Fore, Back, Style, init
+from editor.compile import compile
+from editor.create import create 
+from editor.read import read 
+
+from funcs import error, clear
+
 import sys
-
-init()
-
-#clear()
-#print(Fore.GREEN + "1. Создать новый файл \n2. Читать файл \n3. Скомпилировать файл" + Style.RESET_ALL)
-#do = input("\nВыберите действие >> ")
-#clear()
-
-#if do == "1":
-#	typefile()
-#elif do == "2":
-#	readfile()
-#elif do == "3":
-#	compfile()
-#else:
-#	exit()
 
 clear()
 
-helpMes = open('help.conf', 'r')
+commands = [
+	"create", # new file
+	"read",   # read file
+	"comp"    # compile file
+]
 
-if len(sys.argv) > 1:
-	arg = sys.argv[1].lower()
+args = sys.argv
 
-	if arg == "type":
-		typefile()
-	elif arg == "read":
-		readfile()
-	elif arg == "comp":
-		compfile()
+if len(args) >= 3:
+	command = args[1].lower()
+	file = args[2].lower()
 
-else:
-	print(helpMes.read())
+	if command == commands[0]:
+		create(file)
+	elif command == commands[1]:
+		read(file)
+	elif command == commands[2]:
+		compile(file)
+	else:
+		error("args", 2)
+
+elif len(args) == 1:
+	error("args", 0)
+elif args[1] not in commands:
+	error("args", 2)
+elif len(args) == 2:
+	error("args", 1)

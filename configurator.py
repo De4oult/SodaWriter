@@ -1,9 +1,12 @@
-commands = {
-	"windows" : ["cls", "java -jar Compiler.jar com.de4oult.soda.Main "],
-	"linux" : ["clear", "sudo java -cp Compiler.jar com.de4oult.soda.Main "]
-}
+from os import path
 
-helpMessage = open('help.conf', 'r')
+dir = path.dirname(__file__)
+helpMessage = open((dir + '/help.conf'), 'r')
+
+commands = {
+	"windows" : ["cls", f"java -jar {dir}/Compiler.jar com.de4oult.soda.Main "],
+	"linux" : ["clear", f"sudo java -cp {dir}/Compiler.jar com.de4oult.soda.Main "]
+}
 
 errors = {
 	"args" : [

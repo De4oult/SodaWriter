@@ -13,6 +13,7 @@ To get started, you need to install __SodaWriter__ on your working system.
 - Download the repository code
 - Place the source code of the program in the folder `C:\Program Files\SodaWriter`
 - Place the _`soda.bat`_ script file in the folder `C:\Windows\System32 `
+
 **Now you can work with SodaWriter on Windows!**
 
 #### Linux
@@ -20,6 +21,7 @@ To get started, you need to install __SodaWriter__ on your working system.
 - Place the source code of the program in the folder `/home/$USER/Soda/SodaWriter`
 - `chmod +x soda`
 - Add the editor folder to the $PATH
+
 **Now you can work with SodaWriter on Linux!**
 
 # Working with the editor

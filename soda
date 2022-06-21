@@ -1,4 +1,4 @@
 #!/bin/bash
 
-python /home/$USER/Soda/SodaWriter/SodaWriter/main.py $1 $2
+python /home/$USER/Soda/SodaWriter/main.py $1 $2
 

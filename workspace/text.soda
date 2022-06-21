@@ -1,6 +1,0 @@
-func json(get_json) {
-	disp get_json + 
-	     "Fuck you"
-}
-json("Misha, ")
-//end of file
